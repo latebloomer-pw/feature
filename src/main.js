@@ -2,7 +2,10 @@ import './styles/style.css'
 import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+import videoBg from './features/videoSwap'
 //import $ from 'jquery'
+
 const lenis = new Lenis()
 function raf(time) {
   lenis.raf(time)
@@ -10,8 +13,9 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf)
-
 gsap.registerPlugin(ScrollTrigger)
+
+// large logo animation
 gsap
   .timeline({
     scrollTrigger: {
@@ -26,14 +30,17 @@ gsap
     delay: 1,
   })
 
+// about / contact animation
 gsap
   .timeline({
     scrollTrigger: {
       trigger: '.case-studies',
-      start: 'bottom +300',
+      start: 'top +300',
       scrub: true,
     },
   })
-  .from('.big-serif', {
+  .from('.talk-block', {
     xPercent: -150,
   })
+
+videoBg()
