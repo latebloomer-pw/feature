@@ -20,14 +20,12 @@ gsap
   .timeline({
     scrollTrigger: {
       trigger: '.landing',
-      start: 'bottom +300',
+      start: 'bottom +25%',
       scrub: true,
     },
   })
   .from('.logo-overlay', {
-    xPercent: -150,
-    ease: 'slow',
-    delay: 1,
+    xPercent: -100,
   })
 
 // about / contact animation
@@ -42,5 +40,13 @@ gsap
   .from('.talk-block', {
     xPercent: -150,
   })
+
+gsap.to('.footer-text-scroll', {
+  duration: 25,
+  ease: 'none',
+  x: '-=1000', //move each box 500px to right
+  repeat: true,
+  scrub: true,
+})
 
 videoBg()
