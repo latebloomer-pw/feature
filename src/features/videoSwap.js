@@ -5,7 +5,7 @@ const videoBg = () => {
   const dt = DateTime.now()
   const hour = dt.hour
 
-  if (hour > 3 && hour < 12) {
+  if (hour > 3 && hour < 20) {
     $('.night').css('z-index', '0')
     $('.day').css('z-index', '3')
   } else {
