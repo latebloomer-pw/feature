@@ -24,6 +24,9 @@ gsap
       scrub: true,
     },
   })
+  .from('.scroll-anim', {
+    scale: 0.5,
+  })
   .from('.logo-overlay', {
     xPercent: -100,
   })
