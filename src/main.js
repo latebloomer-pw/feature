@@ -20,14 +20,20 @@ gsap
   .timeline({
     scrollTrigger: {
       trigger: '.landing',
-      start: 'bottom +25%',
+      start: 'bottom bottom',
       scrub: true,
     },
   })
-  .from('.scroll-anim', {
-    scale: 0.5,
-  })
+  .fromTo(
+    '.scroll-anim',
+    {
+      opacity: 0,
+      stagger: 0.5,
+    },
+    { opacity: 1, stagger: 0.5 }
+  )
   .from('.logo-overlay', {
+    delay: 1,
     xPercent: -100,
   })
 
