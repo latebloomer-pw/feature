@@ -118,6 +118,7 @@ gsap.timeline({
 const tl = new Timeline()
 tl.to('.menu-footer', {
   top: '70vh',
+  opacity: '100%',
   ease: true,
   reversed: true,
   duration: 0.5,
