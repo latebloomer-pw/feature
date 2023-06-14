@@ -9,7 +9,6 @@ const videoBg = () => {
     $('.night').css('z-index', '0')
     $('.day').css('z-index', '3')
   } else {
-    console.log('nite')
     $('.day').css('z-index', '0')
     $('.night').css('z-index', '3')
   }
