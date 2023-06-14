@@ -82,13 +82,13 @@ $('.project').each(function () {
       onEnter: () => {
         isDesktop
           ? $('.sidebar-links').removeClass('selected') &&
-            targetElement.addClass('selected')
+          targetElement.addClass('selected')
           : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
       onEnterBack: () => {
         isDesktop
           ? $('.sidebar-links').removeClass('selected') &&
-            targetElement.addClass('selected')
+          targetElement.addClass('selected')
           : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
     },
@@ -115,17 +115,16 @@ gsap.timeline({
   },
 })
 
-if (!isDesktop) {
-  const tl = new Timeline()
-  tl.to('.menu-footer', {
-    top: '70vh',
-    ease: true,
-    reversed: true,
-    duration: 0.5,
-  })
-  $('.menu-footer').on('click', function () {
-    tl.reversed() ? tl.play() : tl.reverse()
-  })
-}
+const tl = new Timeline()
+tl.to('.menu-footer', {
+  top: '70vh',
+  ease: true,
+  reversed: true,
+  duration: 0.5,
+})
+$('.menu-footer').on('click', function () {
+  console.log('clicky')
+  tl.reversed() ? tl.play() : tl.reverse()
+})
 
 setInterval(() => videoBg(), 1000)
