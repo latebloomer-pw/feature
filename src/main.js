@@ -116,17 +116,16 @@ gsap.timeline({
 })
 
 const tl = new Timeline()
-
 tl.to('.menu-footer', {
   top: '70vh',
   bottom: '-1vh',
   ease: true,
   reversed: true,
-  duration: 0.5,
 })
-
 $('.menu-footer').on('click', function () {
-  tl.reversed() ? tl.play() : tl.reverse()
+  tl.reversed()
+    ? tl.play() && $('.contact.mobile').hide(1500)
+    : tl.reverse() && $('.contact.mobile').show()
 })
 
 setInterval(() => videoBg(), 1000)
