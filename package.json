@@ -1,7 +1,7 @@
 {
-  "name": "vite-javascript-webflow",
+  "name": "feature-studios",
   "version": "0.0.1",
-  "author": "armandsalle <armand.salle@gmail.com>",
+  "author": "pete wallace <pete@latebloomer.studio>",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

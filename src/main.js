@@ -1,39 +1,46 @@
 import './styles/style.css'
-//import Lenis from '@studio-freight/lenis'
+import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 
 import videoBg from './features/videoSwap'
 
-//const LINK_ID = '.sidebar-links'
-//const links = document.querySelectorAll(LINK_ID)
-gsap.registerPlugin(ScrollTrigger)
+// WINDOW RESIZE LISTENER
+let isDesktop = window.matchMedia('(min-width: 768px)').matches
+window.addEventListener('resize', () => {
+  isDesktop = window.matchMedia('(min-width: 768px)').matches
+})
+// ===============
+
+gsap.registerPlugin(ScrollTrigger) // GSAP SETUP
 
 // LENIS SETUP
-// const lenis = new Lenis({ lerp: 0.05 })
-// function raf(time) {
-//   lenis.raf(time)
-//   requestAnimationFrame(raf)
-// }
+const lenis = new Lenis({ lerp: 0.05 })
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+requestAnimationFrame(raf)
 
-// gsap.ticker.add((time) => {
-//   lenis.raf(time * 1000)
-// })
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000)
+})
 // ===============
 
 // GSAP ANIMATIONS
 gsap
   .timeline({
     scrollTrigger: {
-      trigger: '.lightbox-link',
+      trigger: '.featured-link',
       start: 'bottom bottom',
       scrub: true,
     },
   })
   .from('.homelink', {
     scale: 6,
-    xPercent: 300,
+    delay: 1,
+    xPercent: 350,
     yPercent: -125,
   })
 
@@ -45,14 +52,23 @@ gsap.to('.footer-text-scroll', {
 })
 // ===============
 
-// menu hover change
-$('.sidebar-links').eq(0).addClass('selected')
-$('.sidebar-links').each(function () {
+// MENU CLICK
+$('.featured-link').each(function () {
   $(this).on('click', () => {
-    console.log($(this))
+    lenis.scrollTo(document.getElementById($(this).attr('link-to')))
   })
 })
+
+// GRID ITEM CLICK
+$('.sidebar-links').each(function () {
+  $(this).on('click', () => {
+    lenis.scrollTo(document.getElementById($(this).attr('link-to')))
+  })
+})
+
+// MENU SCROLL EFFECT
 $('.project').each(function () {
+  // each project wrapper (i.e. CMS item) triggers link hover state
   let triggerElement = $(this)
   let myIndex = $(this).index()
   let targetElement = $('.sidebar-links').eq(myIndex)
@@ -60,30 +76,47 @@ $('.project').each(function () {
     scrollTrigger: {
       trigger: triggerElement,
       // trigger element - viewport
-      start: 'top bottom',
-      end: 'bottom bottom',
+      start: 'top top+=100',
+      end: 'bottom bottom-=200', // shrink available trigger space for faster response time
       onEnter: () => {
-        $('.sidebar-links').removeClass('selected')
-        targetElement.addClass('selected')
+        isDesktop
+          ? $('.sidebar-links').removeClass('selected') &&
+          targetElement.addClass('selected')
+          : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
       onEnterBack: () => {
-        $('.sidebar-links').removeClass('selected')
-        targetElement.addClass('selected')
+        isDesktop
+          ? $('.sidebar-links').removeClass('selected') &&
+          targetElement.addClass('selected')
+          : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
     },
   })
 })
 
-// // GET ALL CASE STUDY SECTIONS
-// const getAllCaseStudies = () => {
-//   const pageSections = []
-//   links.forEach((link) => {
-//     pageSections.push(document.getElementById(link.getAttribute('link-to')))
-//   })
-//   return pageSections
-// }
+gsap.timeline({
+  // for "un-hovering" first list item when scrolling back up to featured grid items
+  scrollTrigger: {
+    trigger: '.featured-projects',
+    // trigger element - viewport
+    start: 'top top+=500',
+    end: 'bottom bottom',
+    onEnter: () => {
+      isDesktop
+        ? $('.sidebar-links').eq(0).removeClass('selected')
+        : $('.menu-item-current').eq(0).text('WORK')
+    },
+    onEnterBack: () => {
+      isDesktop
+        ? $('.sidebar-links').eq(0).removeClass('selected')
+        : $('.menu-item-current').eq(0).text('HOME')
+    },
+  },
+})
+
+if (!isDesktop) {
+  $('.menu-footer').on('click', function () {
+  })
+}
 
 setInterval(() => videoBg(), 1000)
-
-// requestAnimationFrame(raf)
-// lenis.on('scroll', () => { })
