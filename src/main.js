@@ -1,5 +1,5 @@
 import './styles/style.css'
-import Lenis from '@studio-freight/lenis'
+//import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
@@ -11,15 +11,15 @@ import videoBg from './features/videoSwap'
 gsap.registerPlugin(ScrollTrigger)
 
 // LENIS SETUP
-const lenis = new Lenis({ lerp: 0.05 })
-function raf(time) {
-  lenis.raf(time)
-  requestAnimationFrame(raf)
-}
+// const lenis = new Lenis({ lerp: 0.05 })
+// function raf(time) {
+//   lenis.raf(time)
+//   requestAnimationFrame(raf)
+// }
 
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000)
-})
+// gsap.ticker.add((time) => {
+//   lenis.raf(time * 1000)
+// })
 // ===============
 
 // GSAP ANIMATIONS
@@ -85,5 +85,5 @@ $('.project').each(function () {
 
 setInterval(() => videoBg(), 1000)
 
-requestAnimationFrame(raf)
-lenis.on('scroll', () => { })
+// requestAnimationFrame(raf)
+// lenis.on('scroll', () => { })
