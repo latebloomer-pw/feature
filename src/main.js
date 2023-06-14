@@ -82,13 +82,13 @@ $('.project').each(function () {
       onEnter: () => {
         isDesktop
           ? $('.sidebar-links').removeClass('selected') &&
-          targetElement.addClass('selected')
+            targetElement.addClass('selected')
           : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
       onEnterBack: () => {
         isDesktop
           ? $('.sidebar-links').removeClass('selected') &&
-          targetElement.addClass('selected')
+            targetElement.addClass('selected')
           : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
     },
