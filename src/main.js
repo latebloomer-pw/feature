@@ -1,6 +1,7 @@
 import './styles/style.css'
 import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
+import { Timeline } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 
@@ -37,7 +38,7 @@ gsap
       scrub: true,
     },
   })
-  .from('.homelink', {
+  .from('.homelink.desktop', {
     scale: 6,
     delay: 1,
     xPercent: 350,
@@ -81,13 +82,13 @@ $('.project').each(function () {
       onEnter: () => {
         isDesktop
           ? $('.sidebar-links').removeClass('selected') &&
-          targetElement.addClass('selected')
+            targetElement.addClass('selected')
           : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
       onEnterBack: () => {
         isDesktop
           ? $('.sidebar-links').removeClass('selected') &&
-          targetElement.addClass('selected')
+            targetElement.addClass('selected')
           : $('.menu-item-current').eq(0).text(triggerElement.attr('menu-name'))
       },
     },
@@ -115,7 +116,15 @@ gsap.timeline({
 })
 
 if (!isDesktop) {
+  const tl = new Timeline()
+  tl.to('.menu-footer', {
+    top: '70vh',
+    ease: true,
+    reversed: true,
+    duration: 0.5,
+  })
   $('.menu-footer').on('click', function () {
+    tl.reversed() ? tl.play() : tl.reverse()
   })
 }
 
