@@ -1,7 +1,7 @@
 import './styles/style.css'
 import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
-import { Timeline } from 'gsap/gsap-core'
+//import { Timeline } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 
@@ -105,28 +105,34 @@ gsap.timeline({
     onEnter: () => {
       isDesktop
         ? $('.sidebar-links').eq(0).removeClass('selected')
-        : $('.menu-item-current').eq(0).text('WORK')
+        : $('.menu-item-current').eq(0).text('work')
     },
     onEnterBack: () => {
       isDesktop
         ? $('.sidebar-links').eq(0).removeClass('selected')
-        : $('.menu-item-current').eq(0).text('HOME')
+        : $('.menu-item-current').eq(0).text('home')
     },
   },
 })
 
-const tl = new Timeline()
-tl.to('.menu-footer', {
-  top: '70dvh',
-  bottom: '-1dvh',
-  ease: true,
-  reversed: true,
-}).to('menu-item-current', {
-  height: 'auto',
-  reversed: true,
+// const tl = new Timeline()
+// tl.to('.menu-footer', {
+//   top: '70dvh',
+//   bottom: '-1dvh',
+//   ease: true,
+//   reversed: true,
+// }).to('menu-item-current', {
+//   height: 'auto',
+//   reversed: true,
+// })
+$('.menu-toggle').on('click', function () {
+  $('.menu-hidden').toggleClass('hide')
+  $('.menu-footer').toggleClass('large')
 })
-$('.menu-footer').on('click', function () {
-  tl.reversed() ? tl.play() : tl.reverse()
-})
-
+if (!isDesktop) {
+  $('.sidebar-links').on('click', function () {
+    $('.menu-hidden').toggleClass('hide')
+    $('.menu-footer').toggleClass('large')
+  })
+}
 setInterval(() => videoBg(), 1000)
