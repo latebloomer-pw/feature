@@ -1,7 +1,6 @@
 import './styles/style.css'
 import Lenis from '@studio-freight/lenis'
 import { gsap } from 'gsap'
-//import { Timeline } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 
@@ -115,16 +114,6 @@ gsap.timeline({
   },
 })
 
-// const tl = new Timeline()
-// tl.to('.menu-footer', {
-//   top: '70dvh',
-//   bottom: '-1dvh',
-//   ease: true,
-//   reversed: true,
-// }).to('menu-item-current', {
-//   height: 'auto',
-//   reversed: true,
-// })
 $('.menu-toggle').on('click', function () {
   $('.menu-hidden').toggleClass('hide')
   $('.menu-footer').toggleClass('large')
