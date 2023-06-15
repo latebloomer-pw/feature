@@ -26,3 +26,7 @@ html.lenis {
 * {
   user-select: none;
 }
+
+.menu-footer {
+  bottom: -1dvh;
+}
