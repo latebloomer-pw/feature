@@ -25,6 +25,11 @@ html.lenis {
 
 * {
   user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  /*Safari*/
+  -moz-user-select: none;
+  /*Firefox*/
 }
 
 .menu-footer {
